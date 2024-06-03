@@ -1,1 +1,1 @@
-# RPS-Rock-Paper-Scissors-one-dmensional-cellular-automata-modelling
+# RPS-Rock-Paper-Scissors-one-dimensional-cellular-automata-modelling
