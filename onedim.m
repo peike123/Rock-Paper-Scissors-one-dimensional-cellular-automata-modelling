@@ -5,7 +5,7 @@ clc;
 L = 500;
 T = 100000;
 
-p_total = 0.75;    % total density
+p_total = 0.75;    % total densityÂ  
 p_R = p_total/3;    
 p_S = p_total/3;
 p_P = p_total/3;
@@ -16,8 +16,8 @@ N_P = p_P*L;
 A = randperm(L);   % random distribution     
 A(find(A<=N_R)) = 1;       % 1 denotes species R (rock)      
 A(find(N_R+1<=A & A<=N_R+N_S)) = 2;        % 2 denotes species S (scissors)
-A(find(N_R+N_S+1<=A & A<=N_R+N_S+N_P)) = 3;  % 3 denotes species P (paper)   1 eats 2, 2 eats 3, 3 eats 1.
-A(find(A>N_R+N_S+N_P+1)) = 0;        % 0 indicates a space
+A(find(N_R+N_S+1<=A & A<=N_R+N_S+N_P)) = 3;  % 3 denotes species P (paper)   1 eats 2, 2 eats 3, 3 eats 1.Â  
+A(find(A>N_R+N_S+N_P)) = 0;        % 0 indicates a spaceÂ  Â  
 
 spacetime = zeros(T+1,L);     %record spatio-temporal matrix
 spacetime(T+1,:) = A;
@@ -28,13 +28,13 @@ alpha = p/(p+q+y); % predation probability
 beta = q/(p+q+y); % reproduction probability
 omega = y/(p+q+y); % mobility probability
 
-%% Ñ­»·
+%% å¾ªçŽ¯
 for t=0:1:T-1
    for i=1:1:L
        if i<=L-1
            if A(1,i)==1
                if A(1,i+1)==0 
-                   a=randsrc(1,1,[1 11 0;beta omega 1-beta-omega]);     %x0 ·±Ö³¡¢Á÷¶¯¡¢²»¶¯ 
+                   a=randsrc(1,1,[1 11 0;beta omega 1-beta-omega]);     %x0 ç¹æ®–ã€æµåŠ¨ã€ä¸åŠ¨ 
                    if a==1
                        A(1,i+1)=1;
                    elseif a==11
@@ -79,7 +79,7 @@ for t=0:1:T-1
                elseif A(1,i+1)==2     
                    A(1,i+1)=2;
                else %A(1,i+1)==3
-                   a=randsrc(1,1,[0 2 3;alpha omega 1-alpha-omega]);  %23
+                   a=randsrc(1,1,[0 2 3;alpha omega 1-alpha-omega]);  %23Â  
                    if a==2 
                        A(1,i:i+1)=[3 2];
                    else 
@@ -88,7 +88,7 @@ for t=0:1:T-1
                end
            elseif A(1,i)==3
                if A(1,i+1)==0 
-                   a=randsrc(1,1,[3 33 0;beta omega 1-beta-omega]);     %30 
+                   a=randsrc(1,1,[3 33 0;beta omega 1-beta-omega]);     %30 Â  
                    if a==3
                        A(1,i+1)=3;
                    elseif a==33
@@ -192,7 +192,7 @@ for t=0:1:T-1
                    end
                elseif A(1,1)==1
                    a=randsrc(1,1,[0 3 1;alpha omega 1-alpha-omega]); %31
-                   if a==3 
+                   if a==3 Â  
                        A(1,i)=1;   
                        A(1,1)=3;
                    else
@@ -200,7 +200,7 @@ for t=0:1:T-1
                    end  
                elseif A(1,1)==2     
                    a=randsrc(1,1,[3 2;omega 1-omega]); %32 
-                   if a==3   %Á÷¶¯
+                   if a==3   %æµåŠ¨
                        A(1,i)=2;   
                        A(1,1)=3;
                    else
@@ -250,15 +250,15 @@ set(gca,'FontWeight','bold','FontSize',14,'LineWidth',1.5);  %Axis fonts and siz
 figure(2)
 clims = [0 3];
 imagesc(spacetime,clims);
-cc=[0 0 0;1 0 0;0 0 1;0 1 0];     %Black; red, blue and green.
+cc=[0 0 0;1 0 0;0 0 1;0 1 0];     %Black; red, blue and green.Â  Â  
 colormap(cc);
 % colorbar;
-y = 0.5:20000:T+0.5;
-set(gca,'Ytick',y);
-% set(gca,'yticklabel',{'10¡Á10^3','8¡Á10^3','6¡Á10^3','4¡Á10^3','2¡Á10^3','0'}); %10000
-% set(gca,'yticklabel',{'15¡Á10^3','12¡Á10^3','9¡Á10^3','6¡Á10^3','3¡Á10^3','0'}); %15000
-% set(gca,'yticklabel',{'5¡Á10^4','4¡Á10^4','3¡Á10^4','2¡Á10^4','1¡Á10^4','0'}); %50000
-set(gca,'yticklabel',{'10¡Á10^4','9¡Á10^4','8¡Á10^4','7¡Á10^4','6¡Á10^4','5¡Á10^4','4¡Á10^4','3¡Á10^4','2¡Á10^4','1¡Á10^4','0'}); %100000
+y = 0.5:20000:T+1.5;Â  Â  
+set(gca,'Ytick',y);Â  
+% set(gca,'yticklabel',{'10Ã—10^3','8Ã—10^3','6Ã—10^3','4Ã—10^3','2Ã—10^3','0'}); %10000
+% set(gca,'yticklabel',{'15Ã—10^3','12Ã—10^3','9Ã—10^3','6Ã—10^3','3Ã—10^3','0'}); %15000Â  
+% set(gca,'yticklabel',{'5Ã—10^4','4Ã—10^4','3Ã—10^4','2Ã—10^4','1Ã—10^4','0'}); %50000
+set(gca,'yticklabel',{'10Ã—10^4','9Ã—10^4','8Ã—10^4','7Ã—10^4','6Ã—10^4','5Ã—10^4','4Ã—10^4','3Ã—10^4','2Ã—10^4','1Ã—10^4','0'}); %100000Â  
 xlabel({'Space'},'FontWeight','bold','FontSize',14); 
 ylabel({'Time'},'FontWeight','bold','FontSize',14);
 set(gca,'FontWeight','bold','FontSize',14,'LineWidth',1.5);
